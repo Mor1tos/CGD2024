@@ -20,7 +20,10 @@ public class Fireball : MonoBehaviour
             angle = angle*-1;
         }
 
+
         transform.Rotate(new Vector3(0,0,angle));
+        transform.position = transform.position + direction*2;
+
         /*
         if (direction.y > 0)
         {
@@ -44,6 +47,10 @@ public class Fireball : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision2D)
     {
+        if (collision2D.gameObject.tag == "Player")
+        {
+            return;
+        }
         Destroy(gameObject);
     }
 

@@ -1,17 +1,32 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Wizard : MonoBehaviour
 {
+    public static Wizard Instance;
+
     public GameObject fireballPrefab;
     private float counter = 5;
     private Vector3 lastMovement = Vector3.zero;
     private Animator animator;
+    public int health = 100;
+    public int mana = 50;
+    private Playerstats stats;
 
     // Start is called before the first frame update
     void Start()
     {
+        stats = Playerstats.Instance;
+
+        // Beispiel für die Verwendung der Spielerstatistiken
+        Debug.Log("Max Health: " + stats.maxHealth);
+        Debug.Log("Max Mana: " + stats.maxMana);
+        Debug.Log("Movement Speed: " + stats.movementSpeed);
+        Debug.Log("Casting Time: " + stats.castingTime);
+        stats = new Playerstats();
+        Instance = this;
         animator = GetComponent<Animator>();
     }
 
@@ -44,19 +59,26 @@ public class Wizard : MonoBehaviour
         if (movement.y != 0 || movement.x != 0)
         {
             lastMovement=movement;
+        }
+
+        // Animation
+        if (movement.y != 0 || movement.x != 0)
+        {
             animator.SetBool("Walking", true);
-        } else
+        }
+        else
         {
             animator.SetBool("Walking", false);
-        }       
-        if(movement.x < 0)
+        }
+        if (movement.x < 0)
         {
             transform.localScale = new Vector3(-1,1,1);
-        } 
-        if(movement.x > 0)
+        }
+        if (movement.x > 0)
         {
             transform.localScale = new Vector3(1,1,1);
-        } 
+        }
+        
 
         //GetKomponent<Fireball>().
         // Casting
@@ -66,7 +88,13 @@ public class Wizard : MonoBehaviour
             GameObject obj = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
             obj.GetComponent<Fireball>().direction = lastMovement;
             counter = 0;
+            animator.SetBool("Attack", true);
         }
+
+        if (Input.GetKeyUp(KeyCode.Space)) {
+            animator.SetBool("Attack", false);
+        }
+
 
         
     }

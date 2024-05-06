@@ -21,15 +21,15 @@ public class Target : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision2D)
     {
+        if (collision2D.gameObject.tag == "Fireball")
+        {
+            float x = 15.6f*Random.value -7.8f;
+            float y = 8f*Random.value -4f;
+            Instantiate(TargetPrefab, new Vector3(x,y,0), Quaternion.identity);
 
-        if(collision2D.gameObject.tag == "Fireball"){
-        
-        float x = 15.6f*Random.value -7.8f;
-        float y = 8f*Random.value -4f;
-        Instantiate(TargetPrefab, new Vector3(x,y,0), Quaternion.identity);
-
-        Destroy(gameObject);
-        }
+            Destroy(gameObject);
+            Hud.score += 1;
+        }        
     }
 
 }
