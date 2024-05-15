@@ -1,31 +1,27 @@
-using System;
-using System.Dynamic;
-using UnityEngine;
-
 public class Playerstats
 {
-    public int maxHealth = 100;
-    public int maxMana = 50;
+    public float maxHealth = 100;
+    public float maxMana = 50;
     public float movementSpeed = 5.0f;
     public float castingTime = 1.5f;
+    public float manaRegeneration = 2;
 
-    // Instanz des Spielerstatistikobjekts
-    private static Playerstats instance;
+    public int experiencePoints = 0;
+    public int level = 1;
 
-    // Eigenschaft, um auf die Instanz zuzugreifen
-public static Playerstats Instance
+    public void GetXp(int xpAmount)
     {
-        get
+        experiencePoints += xpAmount;
+        if (experiencePoints >= 100) // Beispiel: Bei 100 XP erhöht sich das Level
         {
-            if (instance == null)
-            {
-                instance = CreateInstance<Playerstats>();
-                instance.maxHealth = 100;
-                instance.maxMana = 50;
-                instance.movementSpeed = 5.0f;
-                instance.castingTime = 1.5f;
-            }
-            return instance;
+            LevelUp();
         }
+    }
+
+    void LevelUp()
+    {
+        level++;
+        // Hier könntest du die Attribute verbessern oder Skillpunkte vergeben
+        // Zum Beispiel: castingTime -= 0.1f; // Casting-Zeit wird um 0.1 Sekunde reduziert
     }
 }

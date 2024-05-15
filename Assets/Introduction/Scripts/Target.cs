@@ -29,6 +29,8 @@ public class Target : MonoBehaviour
 
             Destroy(gameObject);
             Hud.score += 1;
+
+           Wizard.Instance.stats.GetXp(50);
         }        
     }
 

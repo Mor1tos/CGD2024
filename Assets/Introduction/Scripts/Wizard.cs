@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,19 +11,12 @@ public class Wizard : MonoBehaviour
     private Vector3 lastMovement = Vector3.zero;
     private Animator animator;
     public int health = 100;
-    public int mana = 50;
-    private Playerstats stats;
+    public float mana = 50;
+    public Playerstats stats;
 
     // Start is called before the first frame update
     void Start()
     {
-        stats = Playerstats.Instance;
-
-        // Beispiel für die Verwendung der Spielerstatistiken
-        Debug.Log("Max Health: " + stats.maxHealth);
-        Debug.Log("Max Mana: " + stats.maxMana);
-        Debug.Log("Movement Speed: " + stats.movementSpeed);
-        Debug.Log("Casting Time: " + stats.castingTime);
         stats = new Playerstats();
         Instance = this;
         animator = GetComponent<Animator>();
@@ -54,7 +46,7 @@ public class Wizard : MonoBehaviour
 
         movement = movement.normalized;
 
-        transform.position = transform.position + movement * Time.deltaTime * 2;
+        transform.position = transform.position + movement * Time.deltaTime * stats.movementSpeed;
 
         if (movement.y != 0 || movement.x != 0)
         {
@@ -80,22 +72,31 @@ public class Wizard : MonoBehaviour
         }
         
 
-        //GetKomponent<Fireball>().
         // Casting
         counter += Time.deltaTime;
-        if (counter > 1 && Input.GetKeyDown(KeyCode.Space))
+        if (counter > stats.castingTime && Input.GetKeyDown(KeyCode.Space))
         {
             GameObject obj = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
             obj.GetComponent<Fireball>().direction = lastMovement;
             counter = 0;
             animator.SetBool("Attack", true);
+            mana -= 5;
         }
 
         if (Input.GetKeyUp(KeyCode.Space)) {
             animator.SetBool("Attack", false);
         }
 
+        mana = mana + Time.deltaTime * stats.manaRegeneration;
+        if(mana > stats.maxMana)
+        {
+            mana = stats.maxMana;
+        }
+    }
 
-        
+    // Function to give experience points to the player
+    void GiveExperience(int xpAmount)
+    {
+        Wizard.Instance.stats.GetXp(xpAmount);
     }
 }

@@ -20,8 +20,17 @@ public class Hud : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Wizard player = Wizard.Instance;
+        int health = player.health;
+        float mana = (int) player.mana;
+        Playerstats playerstats = player.stats;
+
+        float maxHealth = playerstats.maxHealth;
+        float maxMana = playerstats.maxMana;
+
+
         scoreText.text ="Score: " + score;
-        healthText.text ="Health: " + Wizard.Instance.health;
-        manaText.text ="Mana: " + Wizard.Instance.mana;
+        healthText.text ="Health: " + Wizard.Instance.health + "/" + maxHealth;
+        manaText.text ="Mana: " + mana + "/" + maxMana;
     }
 }
