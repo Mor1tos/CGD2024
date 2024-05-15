@@ -12,7 +12,7 @@ public class Playerstats
     public void GetXp(int xpAmount)
     {
         experiencePoints += xpAmount;
-        if (experiencePoints >= 100) // Beispiel: Bei 100 XP erhöht sich das Level
+        if (experiencePoints >= 100)
         {
             LevelUp();
         }
@@ -21,7 +21,11 @@ public class Playerstats
     void LevelUp()
     {
         level++;
-        // Hier könntest du die Attribute verbessern oder Skillpunkte vergeben
-        // Zum Beispiel: castingTime -= 0.1f; // Casting-Zeit wird um 0.1 Sekunde reduziert
+
+        movementSpeed += 0.25f;
+        castingTime -= 0.5f;
+        maxMana += 2;
+        maxHealth += 10;
     }
 }
+

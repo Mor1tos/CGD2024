@@ -93,10 +93,4 @@ public class Wizard : MonoBehaviour
             mana = stats.maxMana;
         }
     }
-
-    // Function to give experience points to the player
-    void GiveExperience(int xpAmount)
-    {
-        Wizard.Instance.stats.GetXp(xpAmount);
-    }
 }
