@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,14 @@ using UnityEngine;
 public class Wizard : MonoBehaviour
 {
     public static Wizard Instance;
-
     public GameObject fireballPrefab;
     private float counter = 5;
     private Vector3 lastMovement = Vector3.zero;
     private Animator animator;
+
     public int health = 100;
     public float mana = 50;
+
     public Playerstats stats;
 
     // Start is called before the first frame update
@@ -72,6 +74,7 @@ public class Wizard : MonoBehaviour
         }
         
 
+        //GetKomponent<Fireball>().
         // Casting
         counter += Time.deltaTime;
         if (counter > stats.castingTime && Input.GetKeyDown(KeyCode.Space))
@@ -87,10 +90,14 @@ public class Wizard : MonoBehaviour
             animator.SetBool("Attack", false);
         }
 
+        // Mana
         mana = mana + Time.deltaTime * stats.manaRegeneration;
-        if(mana > stats.maxMana)
+        if (mana > stats.maxMana)
         {
             mana = stats.maxMana;
         }
+
+
+        
     }
 }

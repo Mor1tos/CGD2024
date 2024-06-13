@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hud : MonoBehaviour
 {
@@ -10,26 +11,44 @@ public class Hud : MonoBehaviour
     public TMP_Text manaText;
     public TMP_Text levelText;
     public TMP_Text xpText;
+    public Image manaImage;
+    public Image healthImage;
+
     public static int score = 0;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
     // Update is called once per frame
     void Update()
     {
         Wizard player = Wizard.Instance;
         int health = player.health;
-        float mana = player.mana;
-        Playerstats playerstats = player.stats;
+        int mana = (int) player.mana;
+        Playerstats playerstats= player.stats;
 
-        int level = playerstats.level;
-        int xp = playerstats.experiencePoints;
         float maxHealth = playerstats.maxHealth;
         float maxMana = playerstats.maxMana;
+        int level = playerstats.level;
+        float xp = playerstats.xp;
 
-        // Aktualisiere die Anzeige
-        scoreText.text = "Score: " + score;
-        healthText.text = "Health: " + health + "/" + maxHealth;
-        manaText.text = "Mana: " + mana.ToString("F0") + "/" + maxMana; // Auf 0 Dezimalstellen gerundet
-        levelText.text = "Level: " + level;
-        xpText.text = "XP: " + xp;
+
+        scoreText.text ="Score: " +score;
+        healthText.text ="Health: " + health + "/" + maxHealth;
+        manaText.text ="Mana: " + mana + "/" + maxMana;
+        levelText.text = "Level:" + level;
+        xpText.text = "XP:" + xp;
+
+
+        float manaPercentage = mana / maxMana;
+        manaImage.transform.localScale = new Vector3(manaPercentage, 1, 1);
+
+        float healthPercentage = health / maxHealth;
+        healthImage.transform.localScale = new Vector3(healthPercentage, 1, 1);
+
     }
 }

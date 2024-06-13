@@ -1,6 +1,8 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class Target : MonoBehaviour
@@ -30,7 +32,10 @@ public class Target : MonoBehaviour
             Destroy(gameObject);
             Hud.score += 1;
 
-           Wizard.Instance.stats.GetXp(50);
+            Wizard player = Wizard.Instance;
+            Playerstats playerstats= player.stats;
+            playerstats.GetXp(1);
+
         }        
     }
 
