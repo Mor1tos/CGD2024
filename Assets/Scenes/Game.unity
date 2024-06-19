@@ -366,8 +366,8 @@ MonoBehaviour:
   manaText: {fileID: 880265587}
   levelText: {fileID: 404152484}
   xpText: {fileID: 490229247}
-  manaImage: {fileID: 0}
-  healthImage: {fileID: 0}
+  manaImage: {fileID: 376732812}
+  healthImage: {fileID: 1729617712}
 --- !u!1 &376732810
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,8 +498,8 @@ MonoBehaviour:
   manaText: {fileID: 880265587}
   levelText: {fileID: 404152484}
   xpText: {fileID: 490229247}
-  manaImage: {fileID: 0}
-  healthImage: {fileID: 0}
+  manaImage: {fileID: 376732812}
+  healthImage: {fileID: 1729617712}
 --- !u!114 &404152484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,8 +654,8 @@ MonoBehaviour:
   manaText: {fileID: 880265587}
   levelText: {fileID: 404152484}
   xpText: {fileID: 490229247}
-  manaImage: {fileID: 0}
-  healthImage: {fileID: 0}
+  manaImage: {fileID: 376732812}
+  healthImage: {fileID: 1729617712}
 --- !u!114 &490229247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,8 +1015,8 @@ MonoBehaviour:
   manaText: {fileID: 880265587}
   levelText: {fileID: 404152484}
   xpText: {fileID: 490229247}
-  manaImage: {fileID: 0}
-  healthImage: {fileID: 0}
+  manaImage: {fileID: 376732812}
+  healthImage: {fileID: 1729617712}
 --- !u!1 &1069737720
 GameObject:
   m_ObjectHideFlags: 0
