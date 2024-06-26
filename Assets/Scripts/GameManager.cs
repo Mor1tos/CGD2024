@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public static float PlayerStats; // Example stat variable
-
+    
     private float timer;
     private float maxTime = 10f; // Example: 60 seconds
     private string gameState = "Title"; // Example game state variable
@@ -16,9 +16,6 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
-            // Initialize PlayerStats if necessary
-            PlayerStats = 0f; // Or load saved stats here
         }
         else
         {
@@ -54,5 +51,22 @@ public class GameManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    // New function to reset player stats and load the game scene
+    public void NewGame()
+    {
+        if (Playerstats.Instance != null)
+        {
+            Playerstats.Instance.ResetStats(); // Reset PlayerStats
+        }
+        LoadGame(); // Load the game scene
+    }
+
+    // Assuming you have a button with the "New Game" action in your scene
+    public void SetUpButtons(Button newGameButton, Button exitButton)
+    {
+        newGameButton.onClick.AddListener(NewGame);
+        exitButton.onClick.AddListener(ExitGame);
     }
 }
